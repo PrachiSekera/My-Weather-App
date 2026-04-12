@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Weather App</title>
+
+  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+ 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+<div class="weather-bg">
+  <div class="dark-mode-overlay"></div>
+  <div class="sun"></div>
+  <div class="cloud layer1"></div>
+  <div class="cloud layer2"></div>
+  <div class="rain"></div>
+  <div class="snow"></div>
+  <div class="thunder"></div>
+</div>
+
+<nav class="navbar navbar-expand-lg custom-navbar sticky-top shadow w-100">
+  <div class="container-fluid px-4">
+    
+    <a class="navbar-brand text-white fw-bold d-flex align-items-center" href="#">
+      <i class="bi bi-cloud-sun-fill fs-3 me-2 text-warning"></i>
+      <span class="letter-spacing-1">WeatherApp</span>
+    </a>
+
+    <button class="navbar-toggler border-0 shadow-none text-white p-0" type="button" data-bs-toggle="collapse" data-bs-target="#weatherNavbar">
+      <i class="bi bi-list fs-1"></i>
+    </button>
+
+    <div class="collapse navbar-collapse mt-3 mt-lg-0" id="weatherNavbar">
+      <div class="d-flex ms-auto gap-3 align-items-center flex-column flex-lg-row">
+        
+        <div class="input-group search-group shadow-sm">
+          <input id="city-input" type="search" class="form-control border-0 shadow-none" placeholder="Search city...">
+          <button id="search-btn" class="btn btn-primary px-4 shadow-none border-0">
+            <i class="bi bi-search"></i>
+          </button>
+        </div>
+
+        <button id="theme-toggle" class="btn bg-white rounded-circle theme-btn shadow-sm mt-3 mt-lg-0">
+          <i class="bi bi-moon-stars-fill text-dark fs-5"></i>
+        </button>
+
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+<div class="container app-container my-4">
+
+  <p id="result" class="text-center text-warning fw-bold mt-2"></p>
+
+  
+  <div class="text-center mb-5">
+    <div id="search-history" class="d-flex justify-content-center flex-wrap gap-2">
+     
+    </div>
+  </div>
+
+  
+  <div class="hero-weather text-center mb-5">
+    <h2 id="city-name" class="display-4 fw-bold mb-0">City Name</h2>
+    <h1 id="temp" class="display-1 fw-bold my-2">--°C</h1>
+    <h4 id="weather" class="text-capitalize fw-light">--</h4>
+  </div>
+
+  <div class="row text-center g-3 mb-5">
+    
+    <div class="col-6 col-md-4">
+      <div class="card weather-card glass-panel p-3">
+        <i class="bi bi-droplet-half fs-2 mb-2 text-info"></i>
+        <p class="mb-1 text-light-50">Humidity</p>
+        <h4 id="humidity" class="fw-bold">--</h4>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-4">
+      <div class="card weather-card glass-panel p-3">
+        <i class="bi bi-thermometer-half fs-2 mb-2 text-danger"></i>
+        <p class="mb-1 text-light-50">Feels Like</p>
+        <h4 id="feels-like" class="fw-bold">--</h4>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-4">
+      <div class="card weather-card glass-panel p-3">
+        <i class="bi bi-eye fs-2 mb-2 text-light"></i>
+        <p class="mb-1 text-light-50">Visibility</p>
+        <h4 id="visibility" class="fw-bold">--</h4>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-4">
+      <div class="card weather-card glass-panel p-3">
+        <i class="bi bi-arrow-down-circle fs-2 mb-2 text-primary"></i>
+        <p class="mb-1 text-light-50">Min Temp</p>
+        <h4 id="min-temp" class="fw-bold">--</h4>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-4">
+      <div class="card weather-card glass-panel p-3">
+        <i class="bi bi-arrow-up-circle fs-2 mb-2 text-warning"></i>
+        <p class="mb-1 text-light-50">Max Temp</p>
+        <h4 id="max-temp" class="fw-bold">--</h4>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-4">
+      <div class="card weather-card glass-panel p-3">
+        <i class="bi bi-speedometer2 fs-2 mb-2 text-success"></i>
+        <p class="mb-1 text-light-50">Pressure</p>
+        <h4 id="pressure" class="fw-bold">--</h4>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="premium-table-wrapper mt-5 mb-5">
+    
+    <div class="d-flex align-items-center justify-content-center mb-4">
+      <i class="bi bi-globe-americas fs-4 me-2 text-info"></i>
+      <h4 class="mb-0 fw-bold">Other Cities</h4>
+    </div>
+    
+    <div class="table-responsive custom-scrollbar glass-table-container">
+      <table class="table custom-glass-table align-middle mb-0">
+        <thead>
+          <tr>
+            <th>City</th>
+            <th>Feels Like</th>
+            <th>Min</th>
+            <th>Max</th>
+            <th>Pressure</th>
+            <th>Visibility</th>
+          </tr>
+        </thead>
+        <tbody id="states-table-body">
+   
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
